@@ -30,6 +30,52 @@ Many players from the past are not participating in this IPL and there are many 
 ### Tools used:
 - Data cleaning, preprocessing - Power BI, Python (pandas)
 - Data visualization - Power BI
+### Steps followed:
+- Extracted IPL players list from online
+- Downloaded Match summary, Batting info, Bowling info datasets from CodeBasics
+- Created new pointstable using python pandas
+
+            import pandas as pd
+            import numpy as np
+            df = pd.read_csv("C:/Users/karthik/Desktop/Raw Data/C10_Input_Files/C10_Input_Files/datasets/dim_match_summary.csv")
+            df.replace({'Super Kings':'CSK', 'KKR':'KKR', 'RCB':'RCB', 'Mumbai':'MI', 'Punjab Kings':'PBKS',
+                        'Sunrisers':'SRH', 'Capitals':'DC','Royals':'RR', 'Titans':'GT', 'Super Giants':'LSG'},inplace=True)
+
+
+            print(df.info())
+            df['matchDate'] = df['matchDate'].astype(str)
+            df[['Month-Day', 'Year']] = df['matchDate'].str.split(', ', expand=True)
+            print(df.info())
+            df_2021 = df[['team1','team2','winner','Year']].loc[df['Year']=='2021']
+            pt_2021 = pd.DataFrame()
+            pt_2021['Team'] = df_2021['winner'].unique()
+            pt_2021.set_index('Team',inplace=True)
+            pt_2021['Matchs'] = df_2021['team1'].value_counts() + df_2021['team2'].value_counts()
+            pt_2021['Won'] = df_2021['winner'].value_counts()
+            pt_2021['Lost'] = pt_2021['Matchs'] - pt_2021['Won']
+            pt_2021['Year'] = 2021
+
+            df_2022 = df[['team1','team2','winner','Year']].loc[df['Year']=='2022']
+            pt_2022 = pd.DataFrame()
+            pt_2022['Team'] = df_2022['winner'].unique()
+            pt_2022.set_index('Team',inplace=True)
+            pt_2022['Matchs'] = df_2022['team1'].value_counts() + df_2022['team2'].value_counts()
+            pt_2022['Won'] = df_2022['winner'].value_counts()
+            pt_2022['Lost'] = pt_2022['Matchs'] - pt_2022['Won']
+            pt_2022['Year'] = 2022
+
+
+            df_2023 = df[['team1','team2','winner','Year']].loc[df['Year']=='2023']
+            pt_2023 = pd.DataFrame()
+            pt_2023['Team'] = df_2023['winner'].unique()
+            pt_2023.set_index('Team',inplace=True)
+            pt_2023['Matchs'] = df_2023['team1'].value_counts() + df_2023['team2'].value_counts()
+            pt_2023['Won'] = df_2023['winner'].value_counts()
+            pt_2023['Lost'] = pt_2023['Matchs'] - pt_2023['Won']
+            pt_2023['Year'] = 2023
+
+            new_points_table = pd.concat([pt_2021,pt_2022,pt_2023],sort=False)
+            new_points_table.to_csv("C:/Users/karthik/Desktop/Raw Data/C10_Input_Files/New_Points_table.csv")
 
 ### Key achievements:
 1. Developed a Power BI report which provides insights for all requirements.
