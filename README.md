@@ -35,3 +35,6 @@ Many players from the past are not participating in this IPL and there are many 
 1. Developed a Power BI report which provides insights for all requirements.
 2. Report shows the best of best Batsman's, Bowlers, Allrounders and Teams in various categories.
 3. Data modelling, Dax, Page navigation, Bookmarks, Slicers like various features of Power BI is used to provide an interactive report for the company.
+
+### A quick of project:
+![report main page](https://github.com/karthikhariharan7/The-Masterstroke-IPL-2024-s-Strategic-Playbook-Report/assets/167401723/b2c85b89-30ee-4d7a-b02c-9c135baaa06b)
