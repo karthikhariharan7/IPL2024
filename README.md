@@ -5,6 +5,7 @@
 ## Power BI Project Report:
 Click Here to view 👇🏻
 “The Masterstroke: IPL 2024’s Strategic Playbook”
+
 https://lnkd.in/g62brqed
 
 ### Primary Insights Requirements:
