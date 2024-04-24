@@ -31,9 +31,10 @@ Many players from the past are not participating in this IPL and there are many 
 - Data cleaning, preprocessing - Power BI, Python (pandas)
 - Data visualization - Power BI
 ### Steps followed:
-- Extracted IPL players list from online
-- Downloaded Match summary, Batting info, Bowling info datasets from CodeBasics
-- Created new pointstable using python pandas
+- Extracted IPL players list from online.
+- Downloaded Match summary, Batting info, Bowling info datasets from CodeBasics.
+- Created a measure table to store all measures for easy accessing.
+- Created new pointstable using python pandas.
 
             import pandas as pd
             import numpy as np
@@ -76,7 +77,24 @@ Many players from the past are not participating in this IPL and there are many 
 
             new_points_table = pd.concat([pt_2021,pt_2022,pt_2023],sort=False)
             new_points_table.to_csv("C:/Users/karthik/Desktop/Raw Data/C10_Input_Files/New_Points_table.csv")
+- Created calculates column for winning percentage of teams.
 
+            Winning% = DIVIDE('New_Points_table'[Won],'New_Points_table'[Matchs])*100
+- Created Team Logo and Color Tables for Logo links and Color px values.
+- Performed data modelling for all Tables.
+![ipl data modelling](https://github.com/karthikhariharan7/The-Masterstroke-IPL-2024-s-Strategic-Playbook-Report/assets/167401723/2c3b1d53-0343-40f7-a3c4-94922284c2a6)
+
+- Created custom columns for Boundary runs & balls.
+- Created measures for batting, bowling, team measures, top perfomers , some measures are
+
+            Boundary% = CALCULATE(DIVIDE(sum(Fact_batting_info[Boundary Runs]),[Runs])*100)
+            B_Economy = CALCULATE(DIVIDE([Runs_conceded],[Balls_Bowled]/6))
+            Count_Of_Chasing_Wins = CALCULATE(COUNTROWS(Dim_match_summary),FILTER(Dim_match_summary,RIGHT(Dim_match_summary[margin],LEN("wickets")) = "wickets"))
+            Strike Rate = CALCULATE(divide([Runs],[balls_faced])*100,FILTER(Dim_players_info,[balls_faced]>60))
+- Used Bookmarks, Page navigation & Slicers to filter data by years.
+- Used Table, Line, Scatter charts to display all data calculated.
+- Hided all other pages other than main page 
+- Upload the Power BI report to Power BI services.
 ### Key achievements:
 1. Developed a Power BI report which provides insights for all requirements.
 2. Report shows the best of best Batsman's, Bowlers, Allrounders and Teams in various categories.
